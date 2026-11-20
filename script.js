@@ -1,4 +1,7 @@
 (function() {
+
+    // Ex1
+
   const cat = document.getElementById('cat')
   const catA = document.getElementById('catA')
   const joke = document.getElementById('joke')
@@ -32,6 +35,7 @@
     jokeA.innerHTML = `-${result.joke.joke} <br>-${result.joke.response}`;
   });
 
+  // Ex2
 
   const ex2joke = document.getElementById('ex2j')
   const ex2response = document.getElementById('ex2r')
@@ -69,6 +73,24 @@
       info.innerHTML = "Wystąpił błąd";
     }
 
+  });
+
+  // Ex3
+  
+  const ex3button = document.getElementById('ex3b')
+  const ex3info = document.getElementById('ex3i')
+
+  ex3button.addEventListener("click", async function() {
+    const response = await fetch(
+      `http://localhost:3000/jokebook/stats`
+    )
+    const result = await response.json();
+    let text = "<table><tr><th>Kategoria</th><th>Liczba żartów</th></tr>";
+    for (const cat in result) {
+      text += `<tr><td>${cat}</td><td>${result[cat]}</td></tr>`;
+    }
+    text += "</table>";
+    ex3info.innerHTML = text;
   });
 
 })();

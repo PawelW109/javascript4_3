@@ -6,3 +6,8 @@ html {
 .box{
   min-height: 100px;
 }
+
+#ex3i td, #ex3i th, #ex3i table{
+  margin-top: 10px;
+  border: 1px solid black;
+}

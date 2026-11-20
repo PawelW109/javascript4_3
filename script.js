@@ -93,4 +93,31 @@
     ex3info.innerHTML = text;
   });
 
+  // Ex4
+  
+  const ex4button = document.getElementById('ex4b')
+  const ex4info = document.getElementById('ex4i')
+  const ex4text = document.getElementById('ex4t')
+
+
+  ex4button.addEventListener("click", async function() {
+    const text = ex4text.value;
+    const response = await fetch(
+      `http://localhost:3000/jokebook/search?word=${text}`
+    )
+    const result = await response.json();
+    let textInfo = "<ul>";
+    for (const j in result.jokeList) {
+      const joke = result.jokeList[j];
+      textInfo += `<li>[${joke.category}] ${joke.joke} - ${joke.response}</li>`;
+    }
+    if(result.jokeList[0]){
+      textInfo += "<ul/>";
+    }
+    else{
+      textInfo = "Brak żartów pasujących do wyszukiwania";
+    }
+    ex4info.innerHTML = textInfo;
+  });
+
 })();
